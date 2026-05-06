@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trần Văn Đoàn — Bio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1018;
+      --paper: #f5f0eb;
+      --red: #c0392b;
+      --gold: #c9a84c;
+      --muted: #7a6e6a;
+      --line: rgba(26,16,24,0.12);
+      --card: rgba(255,255,255,0.55);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.6;
+    }
+    .hashira { position: fixed; left: 48px; top: 0; bottom: 0; width: 3px; background: var(--red); z-index: 2; opacity: 0.7; }
+    .petals-container { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .petal { position: absolute; top: -40px; opacity: 0; animation: fall linear infinite; }
+    @keyframes fall {
+      0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+      10%  { opacity: 0.55; }
+      90%  { opacity: 0.35; }
+      100% { opacity: 0; transform: translateY(110vh) rotate(540deg); }
+    }
+    main { position: relative; z-index: 3; max-width: 780px; margin: 0 auto; padding: 80px 40px 100px 100px; }
+
+```
+/* Hero */
+.hero { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 72px; animation: fadeUp 1s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; display: block; }
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.1; font-weight: 700; margin-bottom: 6px; }
+.jp-name { font-family: 'Noto Serif JP', serif; font-size: 0.95rem; color: var(--muted); letter-spacing: 0.18em; margin-bottom: 26px; display: block; }
+.tagline { font-size: 0.8rem; line-height: 1.95; color: var(--muted); max-width: 400px; border-left: 2px solid var(--gold); padding-left: 16px; }
+.avatar-wrap { position: relative; width: 130px; height: 130px; flex-shrink: 0; }
+.avatar-wrap::before { content: ''; position: absolute; inset: -8px; border: 1.5px solid var(--red); border-radius: 2px; transform: rotate(4deg); }
+.avatar { width: 130px; height: 130px; background: linear-gradient(145deg, #e8d5c4, #d4b8a8); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; position: relative; z-index: 1; }
+.avatar::after { content: '🌸'; position: absolute; bottom: 6px; right: 8px; font-size: 0.9rem; opacity: 0.7; }
+
+/* Dividers */
+.divider { display: flex; align-items: center; gap: 16px; margin: 52px 0 36px; }
+.divider-line { flex: 1; height: 1px; background: var(--line); }
+.divider-kanji { font-family: 'Noto Serif JP', serif; font-size: 1rem; color: var(--red); letter-spacing: 0.12em; }
+section { margin-bottom: 58px; animation: fadeUp 1s ease both; }
+section:nth-of-type(2) { animation-delay: 0.1s; }
+section:nth-of-type(3) { animation-delay: 0.2s; }
+section:nth-of-type(4) { animation-delay: 0.3s; }
+section:nth-of-type(5) { animation-delay: 0.4s; }
+.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; font-style: italic; }
+.section-jp { font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.about-card { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 15px 18px; position: relative; overflow: hidden; }
+.about-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+.card-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.card-value { font-size: 0.81rem; line-height: 1.55; }
+
+/* Japan */
+.japan-box { background: linear-gradient(135deg, rgba(192,57,43,0.05), rgba(201,168,76,0.06)); border: 1px solid rgba(192,57,43,0.2); border-radius: 6px; padding: 24px 28px; position: relative; }
+.japan-box::after { content: '日本へ'; position: absolute; top: 14px; right: 18px; font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--red); opacity: 0.4; }
+.japan-box p { font-size: 0.81rem; line-height: 2; }
+.highlight { color: var(--red); font-weight: 500; }
+.timeline { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
+.timeline-item { display: flex; gap: 13px; align-items: flex-start; font-size: 0.78rem; }
+.tl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); margin-top: 5px; flex-shrink: 0; }
+.tl-text { line-height: 1.6; }
+.tl-text strong { color: var(--red); }
+.stamp { display: inline-block; border: 2px solid var(--red); color: var(--red); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; transform: rotate(-2deg); opacity: 0.8; }
+
+/* Music */
+.music-list { display: flex; flex-direction: column; gap: 1px; }
+.music-item { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; padding: 10px 13px; border-radius: 4px; border: 1px solid transparent; transition: all 0.22s ease; cursor: default; position: relative; }
+.music-item:hover { background: rgba(255,255,255,0.75); border-color: var(--line); transform: translateX(4px); }
+.music-item:hover .track-num { opacity: 0; }
+.music-item:hover .play-icon { opacity: 1; }
+.track-num { font-size: 0.66rem; color: var(--muted); text-align: right; transition: opacity 0.18s; }
+.play-icon { position: absolute; left: 13px; font-size: 0.68rem; opacity: 0; transition: opacity 0.18s; color: var(--red); }
+.track-name { font-size: 0.82rem; display: block; margin-bottom: 2px; }
+.track-artist { font-size: 0.68rem; color: var(--muted); }
+.track-badge { font-size: 0.6rem; padding: 2px 7px; border-radius: 20px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.track-badge.pop  { border-color: rgba(100,100,200,0.25); color: #5557a8; }
+.track-badge.indie{ border-color: rgba(201,168,76,0.4);   color: #9a7a2c; }
+.track-badge.vn   { border-color: rgba(192,57,43,0.3);    color: var(--red); }
+.track-badge.alt  { border-color: rgba(80,150,100,0.35);  color: #3a7a52; }
+.track-badge.soul { border-color: rgba(180,80,180,0.3);   color: #9a3e9a; }
+.spotify-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.73rem; color: #1db954; text-decoration: none; border: 1px solid rgba(29,185,84,0.3); padding: 7px 16px; border-radius: 20px; transition: all 0.2s; }
+.spotify-btn:hover { background: rgba(29,185,84,0.08); border-color: rgba(29,185,84,0.6); }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact-card { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 18px; text-decoration: none; color: var(--ink); transition: all 0.22s ease; }
+.contact-card:hover { background: rgba(255,255,255,0.85); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.contact-icon { font-size: 1.4rem; flex-shrink: 0; }
+.c-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.c-value { font-size: 0.78rem; }
+
+footer { position: relative; z-index: 3; text-align: center; padding: 34px 40px; border-top: 1px solid var(--line); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-top: 6px; font-size: 0.7rem; color: var(--red); opacity: 0.5; }
+
+@media (max-width: 600px) {
+  main { padding: 60px 20px 80px 68px; }
+  .hero { grid-template-columns: 1fr; }
+  .avatar-wrap { display: none; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<div class="hashira"></div>
+<div class="petals-container" id="petals"></div>
+
+<main>
+
+  <!-- Hero -->
+
+  <div class="hero">
+    <div class="hero-text">
+      <span class="label">✦ Personal Bio · 2025 ✦</span>
+      <h1>Trần<br/>Văn Đoàn</h1>
+      <span class="jp-name">チャン・ヴァン・ドアン ・ tdoanf</span>
+      <p class="tagline">
+        Một người trẻ đang theo đuổi ước mơ du học Nhật Bản —
+        yêu âm nhạc, yêu những hành trình mới, và tin rằng
+        <strong>mỗi ngày đều là một trang mới</strong> để viết tiếp.
+      </p>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar">🌸</div>
+    </div>
+  </div>
+
+  <!-- About -->
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">自己紹介</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Về bản thân</h2><span class="section-jp">About me</span></div>
+    <div class="about-grid">
+      <div class="about-card"><div class="card-label">Đam mê</div><div class="card-value">Âm nhạc · Văn hóa Nhật · Đọc sách · Nhiếp ảnh</div></div>
+      <div class="about-card"><div class="card-label">Đang học</div><div class="card-value">Tiếng Nhật N3 → N2 · Chuẩn bị hồ sơ du học</div></div>
+      <div class="about-card"><div class="card-label">Tính cách</div><div class="card-value">Hướng nội · Mơ mộng · Chăm chỉ · Thích khám phá</div></div>
+      <div class="about-card"><div class="card-label">Motto</div><div class="card-value">「七転び八起き」<br/>Thất bại 7 lần, đứng dậy 8 lần.</div></div>
+    </div>
+  </section>
+
+  <!-- Japan -->
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">夢・ゆめ</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Hành trình Nhật Bản</h2><span class="section-jp">Japan Dream</span><span class="stamp">Incoming ✈</span></div>
+    <div class="japan-box">
+      <p>Từ lần đầu nghe một bài nhạc Nhật, mình đã bị cuốn hút vào thứ văn hóa ấy — vừa <span class="highlight">tinh tế</span>, vừa <span class="highlight">đầy chiều sâu</span>. Du học Nhật Bản không chỉ là việc học, đó là cả một cuộc phiêu lưu mình luôn mơ tới.</p>
+      <div class="timeline">
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Bắt đầu học tiếng Nhật</strong> — Hiragana, Katakana, Kanji từng bước</div></div>
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Chuẩn bị hồ sơ du học</strong> — JLPT, portfolio, phỏng vấn học bổng</div></div>
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Sắp lên đường!</strong> — Háo hức, hồi hộp và sẵn sàng 🇯🇵</div></div>
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Ước mơ tương lai</strong> — Làm việc, trải nghiệm và trưởng thành tại Nhật</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Music -->
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">音楽</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Nhạc yêu thích</h2><span class="section-jp">346 bài · Spotify</span></div>
+    <div class="music-list">
+
+```
+  <div class="music-item"><span class="track-num">01</span><span class="play-icon">▶</span><div><span class="track-name">Leave a Light On</span><span class="track-artist">Tom Walker</span></div><span class="track-badge pop">Pop</span></div>
+
+  <div class="music-item"><span class="track-num">02</span><span class="play-icon">▶</span><div><span class="track-name">A Thousand Years</span><span class="track-artist">Jada Facer · Kyson Facer</span></div><span class="track-badge soul">Ballad</span></div>
+
+  <div class="music-item"><span class="track-num">03</span><span class="play-icon">▶</span><div><span class="track-name">Head In The Clouds</span><span class="track-artist">Hayd</span></div><span class="track-badge indie">Indie</span></div>
+
+  <div class="music-item"><span class="track-num">04</span><span class="play-icon">▶</span><div><span class="track-name">Those Eyes (Sped Up)</span><span class="track-artist">New West</span></div><span class="track-badge pop">Pop</span></div>
+
+  <div class="music-item"><span class="track-num">05</span><span class="play-icon">▶</span><div><span class="track-name">Atlantis</span><span class="track-artist">Seafret</span></div><span class="track-badge indie">Indie</span></div>
+
+  <div class="music-item"><span class="track-num">06</span><span class="play-icon">▶</span><div><span class="track-name">Love In The Dark</span><span class="track-artist">Adele</span></div><span class="track-badge soul">Soul</span></div>
+
+  <div class="music-item"><span class="track-num">07</span><span class="play-icon">▶</span><div><span class="track-name">Heat Waves (Slowed)</span><span class="track-artist">Glass Animals</span></div><span class="track-badge alt">Alt</span></div>
+
+  <div class="music-item"><span class="track-num">08</span><span class="play-icon">▶</span><div><span class="track-name">I Wanna Be Yours</span><span class="track-artist">Arctic Monkeys</span></div><span class="track-badge alt">Alt Rock</span></div>
+
+  <div class="music-item"><span class="track-num">09</span><span class="play-icon">▶</span><div><span class="track-name">Dandelions (Slowed + Reverb)</span><span class="track-artist">Ruth B.</span></div><span class="track-badge indie">Indie</span></div>
+
+  <div class="music-item"><span class="track-num">10</span><span class="play-icon">▶</span><div><span class="track-name">All I Want</span><span class="track-artist">Olivia Rodrigo</span></div><span class="track-badge pop">Pop</span></div>
+
+  <div class="music-item"><span class="track-num">11</span><span class="play-icon">▶</span><div><span class="track-name">Viva La Vida</span><span class="track-artist">Coldplay</span></div><span class="track-badge alt">Rock</span></div>
+
+  <div class="music-item"><span class="track-num">12</span><span class="play-icon">▶</span><div><span class="track-name">Duvet</span><span class="track-artist">bôa</span></div><span class="track-badge alt">Dream Pop</span></div>
+
+  <div class="music-item"><span class="track-num">13</span><span class="play-icon">▶</span><div><span class="track-name">snowfall</span><span class="track-artist">Øneheart · reidenshi</span></div><span class="track-badge indie">Lo-fi</span></div>
+
+  <div class="music-item"><span class="track-num">14</span><span class="play-icon">▶</span><div><span class="track-name">death bed (coffee for your head)</span><span class="track-artist">Powfu · beabadoobee</span></div><span class="track-badge indie">Indie</span></div>
+
+  <div class="music-item"><span class="track-num">15</span><span class="play-icon">▶</span><div><span class="track-name">double take</span><span class="track-artist">Dhruv</span></div><span class="track-badge pop">R&B</span></div>
+
+  <div class="music-item"><span class="track-num">16</span><span class="play-icon">▶</span><div><span class="track-name">Enchanted</span><span class="track-artist">Taylor Swift</span></div><span class="track-badge pop">Pop</span></div>
+
+  <div class="music-item"><span class="track-num">17</span><span class="play-icon">▶</span><div><span class="track-name">Somewhere Only We Know</span><span class="track-artist">Keane</span></div><span class="track-badge alt">Alt Rock</span></div>
+
+  <div class="music-item"><span class="track-num">18</span><span class="play-icon">▶</span><div><span class="track-name">She Neva Knows</span><span class="track-artist">JustaTee</span></div><span class="track-badge vn">V-Pop</span></div>
+
+  <div class="music-item"><span class="track-num">19</span><span class="play-icon">▶</span><div><span class="track-name">LIMBO</span><span class="track-artist">keshi</span></div><span class="track-badge pop">R&B</span></div>
+
+  <div class="music-item"><span class="track-num">20</span><span class="play-icon">▶</span><div><span class="track-name">Hero (feat. Christina Perri)</span><span class="track-artist">Cash Cash</span></div><span class="track-badge pop">Pop</span></div>
+
+</div>
+<a class="spotify-btn" href="https://open.spotify.com/playlist/1g63cK4fRMp9APHSwv5AfL" target="_blank">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+  Nghe full playlist · 346 bài trên Spotify
+</a>
+```
+
+  </section>
+
+  <!-- Contact -->
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">連絡先</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Liên lạc</h2><span class="section-jp">Get in touch</span></div>
+    <div class="contact-grid">
+
+```
+  <a class="contact-card" href="mailto:tranvandoan@email.com">
+    <span class="contact-icon">✉️</span>
+    <div><div class="c-label">Email</div><div class="c-value">tranvandoan@email.com</div></div>
+  </a>
+
+  <a class="contact-card" href="https://facebook.com/tdoanf" target="_blank">
+    <span class="contact-icon">📘</span>
+    <div><div class="c-label">Facebook</div><div class="c-value">facebook.com/tdoanf</div></div>
+  </a>
+
+  <a class="contact-card" href="https://open.spotify.com/user/31zctyny2dugq2i3tcpkl3iawy5y" target="_blank">
+    <span class="contact-icon">🎵</span>
+    <div><div class="c-label">Spotify</div><div class="c-value">tdoanf · 346 bài yêu thích</div></div>
+  </a>
+
+  <a class="contact-card" href="#" target="_blank">
+    <span class="contact-icon">📸</span>
+    <div><div class="c-label">Instagram</div><div class="c-value">@tdoanf</div></div>
+  </a>
+
+</div>
+<p style="font-size:0.72rem; color:var(--muted); margin-top:14px; opacity:0.7;">
+  💡 Cập nhật email / Instagram / số điện thoại theo thông tin thực của bạn nhé!
+</p>
+```
+
+  </section>
+
+</main>
+
+<footer>
+  Trần Văn Đoàn · Sắp lên đường đến Nhật Bản 🇯🇵
+  <span class="jp-footer">日本への旅はもうすぐ ✈️ 🌸</span>
+</footer>
+
+<script>
+  const c = document.getElementById('petals');
+  const e = ['🌸','🌺','✿','❀'];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = e[Math.floor(Math.random() * e.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (8 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 14) + 's';
+    p.style.fontSize = (11 + Math.random() * 13) + 'px';
+    c.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
