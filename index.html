@@ -89,10 +89,18 @@ h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400
 
 /* Music */
 .music-list { display: flex; flex-direction: column; gap: 1px; }
-.music-item { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; padding: 10px 13px; border-radius: 4px; border: 1px solid transparent; transition: all 0.22s ease; cursor: default; position: relative; }
+.music-item {
+  display: grid; grid-template-columns: 28px 1fr auto;
+  gap: 12px; align-items: center; padding: 10px 13px;
+  border-radius: 4px; border: 1px solid transparent;
+  transition: all 0.22s ease; cursor: pointer; position: relative;
+}
 .music-item:hover { background: rgba(255,255,255,0.75); border-color: var(--line); transform: translateX(4px); }
-.music-item:hover .track-num { opacity: 0; }
+.music-item.active { background: rgba(192,57,43,0.06); border-color: rgba(192,57,43,0.2); transform: translateX(4px); }
+.music-item:hover .track-num, .music-item.active .track-num { opacity: 0; }
 .music-item:hover .play-icon { opacity: 1; }
+.music-item.active .play-icon { opacity: 1; color: var(--red); animation: pulse 1s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 .track-num { font-size: 0.66rem; color: var(--muted); text-align: right; transition: opacity 0.18s; }
 .play-icon { position: absolute; left: 13px; font-size: 0.68rem; opacity: 0; transition: opacity 0.18s; color: var(--red); }
 .track-name { font-size: 0.82rem; display: block; margin-bottom: 2px; }
@@ -103,6 +111,25 @@ h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400
 .track-badge.vn   { border-color: rgba(192,57,43,0.3);    color: var(--red); }
 .track-badge.alt  { border-color: rgba(80,150,100,0.35);  color: #3a7a52; }
 .track-badge.soul { border-color: rgba(180,80,180,0.3);   color: #9a3e9a; }
+
+/* Spotify player */
+.player-wrap {
+  margin-bottom: 6px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(29,185,84,0.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  background: #000;
+}
+.player-wrap iframe { display: block; width: 100%; border: none; }
+.player-hint {
+  font-size: 0.68rem; color: var(--muted);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.player-hint::before { content: '♪'; color: #1db954; }
+
 .spotify-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.73rem; color: #1db954; text-decoration: none; border: 1px solid rgba(29,185,84,0.3); padding: 7px 16px; border-radius: 20px; transition: all 0.2s; }
 .spotify-btn:hover { background: rgba(29,185,84,0.08); border-color: rgba(29,185,84,0.6); }
 
@@ -186,48 +213,61 @@ footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-
   <div class="divider"><div class="divider-line"></div><span class="divider-kanji">音楽</span><div class="divider-line"></div></div>
   <section>
     <div class="section-header"><h2>Nhạc yêu thích</h2><span class="section-jp">346 bài · Spotify</span></div>
-    <div class="music-list">
 
 ```
-  <div class="music-item"><span class="track-num">01</span><span class="play-icon">▶</span><div><span class="track-name">Leave a Light On</span><span class="track-artist">Tom Walker</span></div><span class="track-badge pop">Pop</span></div>
+<!-- Spotify embed player -->
+<div class="player-wrap" id="playerWrap">
+  <iframe id="spotifyPlayer"
+    src="https://open.spotify.com/embed/track/6lOWoTqVnAWXchddtTH31W?utm_source=generator&theme=0"
+    width="100%" height="152" frameborder="0"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+</div>
+<p class="player-hint">Bấm vào bài nhạc bên dưới để phát · Cần đăng nhập Spotify để nghe đầy đủ</p>
 
-  <div class="music-item"><span class="track-num">02</span><span class="play-icon">▶</span><div><span class="track-name">A Thousand Years</span><span class="track-artist">Jada Facer · Kyson Facer</span></div><span class="track-badge soul">Ballad</span></div>
+<div class="music-list" id="musicList">
 
-  <div class="music-item"><span class="track-num">03</span><span class="play-icon">▶</span><div><span class="track-name">Head In The Clouds</span><span class="track-artist">Hayd</span></div><span class="track-badge indie">Indie</span></div>
+  <div class="music-item active" data-id="6lOWoTqVnAWXchddtTH31W"><span class="track-num">01</span><span class="play-icon">♪</span><div><span class="track-name">Leave a Light On</span><span class="track-artist">Tom Walker</span></div><span class="track-badge pop">Pop</span></div>
 
-  <div class="music-item"><span class="track-num">04</span><span class="play-icon">▶</span><div><span class="track-name">Those Eyes (Sped Up)</span><span class="track-artist">New West</span></div><span class="track-badge pop">Pop</span></div>
+  <div class="music-item" data-id="74OuU0iGq2Hbsgnetf5xhy"><span class="track-num">02</span><span class="play-icon">♪</span><div><span class="track-name">A Thousand Years</span><span class="track-artist">Jada Facer · Kyson Facer</span></div><span class="track-badge soul">Ballad</span></div>
 
-  <div class="music-item"><span class="track-num">05</span><span class="play-icon">▶</span><div><span class="track-name">Atlantis</span><span class="track-artist">Seafret</span></div><span class="track-badge indie">Indie</span></div>
+  <div class="music-item" data-id="3CeKc83EsgRPItgvlDHo5B"><span class="track-num">03</span><span class="play-icon">♪</span><div><span class="track-name">Head In The Clouds</span><span class="track-artist">Hayd</span></div><span class="track-badge indie">Indie</span></div>
 
-  <div class="music-item"><span class="track-num">06</span><span class="play-icon">▶</span><div><span class="track-name">Love In The Dark</span><span class="track-artist">Adele</span></div><span class="track-badge soul">Soul</span></div>
+  <div class="music-item" data-id="6XDBohkvajOwoqr8jHPjzQ"><span class="track-num">04</span><span class="play-icon">♪</span><div><span class="track-name">Those Eyes (Sped Up)</span><span class="track-artist">New West</span></div><span class="track-badge pop">Pop</span></div>
 
-  <div class="music-item"><span class="track-num">07</span><span class="play-icon">▶</span><div><span class="track-name">Heat Waves (Slowed)</span><span class="track-artist">Glass Animals</span></div><span class="track-badge alt">Alt</span></div>
+  <div class="music-item" data-id="1Fid2jjqsHViMX6xNH70hE"><span class="track-num">05</span><span class="play-icon">♪</span><div><span class="track-name">Atlantis</span><span class="track-artist">Seafret</span></div><span class="track-badge indie">Indie</span></div>
 
-  <div class="music-item"><span class="track-num">08</span><span class="play-icon">▶</span><div><span class="track-name">I Wanna Be Yours</span><span class="track-artist">Arctic Monkeys</span></div><span class="track-badge alt">Alt Rock</span></div>
+  <div class="music-item" data-id="0DuWDLjriRPjDRoPgaCslY"><span class="track-num">06</span><span class="play-icon">♪</span><div><span class="track-name">Love In The Dark</span><span class="track-artist">Adele</span></div><span class="track-badge soul">Soul</span></div>
 
-  <div class="music-item"><span class="track-num">09</span><span class="play-icon">▶</span><div><span class="track-name">Dandelions (Slowed + Reverb)</span><span class="track-artist">Ruth B.</span></div><span class="track-badge indie">Indie</span></div>
+  <div class="music-item" data-id="1K2RnVhm3eauKnA8PAcPu1"><span class="track-num">07</span><span class="play-icon">♪</span><div><span class="track-name">Heat Waves (Slowed)</span><span class="track-artist">Glass Animals</span></div><span class="track-badge alt">Alt</span></div>
 
-  <div class="music-item"><span class="track-num">10</span><span class="play-icon">▶</span><div><span class="track-name">All I Want</span><span class="track-artist">Olivia Rodrigo</span></div><span class="track-badge pop">Pop</span></div>
+  <div class="music-item" data-id="5XeFesFbtLpXzIVDNQP22n"><span class="track-num">08</span><span class="play-icon">♪</span><div><span class="track-name">I Wanna Be Yours</span><span class="track-artist">Arctic Monkeys</span></div><span class="track-badge alt">Alt Rock</span></div>
 
-  <div class="music-item"><span class="track-num">11</span><span class="play-icon">▶</span><div><span class="track-name">Viva La Vida</span><span class="track-artist">Coldplay</span></div><span class="track-badge alt">Rock</span></div>
+  <div class="music-item" data-id="6fhG2KJgwO7CrNflRaRmvp"><span class="track-num">09</span><span class="play-icon">♪</span><div><span class="track-name">Dandelions (Slowed + Reverb)</span><span class="track-artist">Ruth B.</span></div><span class="track-badge indie">Indie</span></div>
 
-  <div class="music-item"><span class="track-num">12</span><span class="play-icon">▶</span><div><span class="track-name">Duvet</span><span class="track-artist">bôa</span></div><span class="track-badge alt">Dream Pop</span></div>
+  <div class="music-item" data-id="1v6svH1Fyx9C1nIt1mA2DT"><span class="track-num">10</span><span class="play-icon">♪</span><div><span class="track-name">All I Want</span><span class="track-artist">Olivia Rodrigo</span></div><span class="track-badge pop">Pop</span></div>
 
-  <div class="music-item"><span class="track-num">13</span><span class="play-icon">▶</span><div><span class="track-name">snowfall</span><span class="track-artist">Øneheart · reidenshi</span></div><span class="track-badge indie">Lo-fi</span></div>
+  <div class="music-item" data-id="1mea3bSkSGXuIRvnydlB5b"><span class="track-num">11</span><span class="play-icon">♪</span><div><span class="track-name">Viva La Vida</span><span class="track-artist">Coldplay</span></div><span class="track-badge alt">Rock</span></div>
 
-  <div class="music-item"><span class="track-num">14</span><span class="play-icon">▶</span><div><span class="track-name">death bed (coffee for your head)</span><span class="track-artist">Powfu · beabadoobee</span></div><span class="track-badge indie">Indie</span></div>
+  <div class="music-item" data-id="42qNWdLKCI41S4uzfamhFM"><span class="track-num">12</span><span class="play-icon">♪</span><div><span class="track-name">Duvet</span><span class="track-artist">bôa</span></div><span class="track-badge alt">Dream Pop</span></div>
 
-  <div class="music-item"><span class="track-num">15</span><span class="play-icon">▶</span><div><span class="track-name">double take</span><span class="track-artist">Dhruv</span></div><span class="track-badge pop">R&B</span></div>
+  <div class="music-item" data-id="4xF4ZBGPZKxECeDFrqSAG4"><span class="track-num">13</span><span class="play-icon">♪</span><div><span class="track-name">snowfall</span><span class="track-artist">Øneheart · reidenshi</span></div><span class="track-badge indie">Lo-fi</span></div>
 
-  <div class="music-item"><span class="track-num">16</span><span class="play-icon">▶</span><div><span class="track-name">Enchanted</span><span class="track-artist">Taylor Swift</span></div><span class="track-badge pop">Pop</span></div>
+  <div class="music-item" data-id="7eJMfftS33KTjuF7lTsMCx"><span class="track-num">14</span><span class="play-icon">♪</span><div><span class="track-name">death bed (coffee for your head)</span><span class="track-artist">Powfu · beabadoobee</span></div><span class="track-badge indie">Indie</span></div>
 
-  <div class="music-item"><span class="track-num">17</span><span class="play-icon">▶</span><div><span class="track-name">Somewhere Only We Know</span><span class="track-artist">Keane</span></div><span class="track-badge alt">Alt Rock</span></div>
+  <div class="music-item" data-id="0QzuaeCEEOV40Pn7IvKEny"><span class="track-num">15</span><span class="play-icon">♪</span><div><span class="track-name">double take</span><span class="track-artist">Dhruv</span></div><span class="track-badge pop">R&B</span></div>
 
-  <div class="music-item"><span class="track-num">18</span><span class="play-icon">▶</span><div><span class="track-name">She Neva Knows</span><span class="track-artist">JustaTee</span></div><span class="track-badge vn">V-Pop</span></div>
+  <div class="music-item" data-id="3sqrvkNC6IPTIXvvbx9Arw"><span class="track-num">16</span><span class="play-icon">♪</span><div><span class="track-name">Enchanted</span><span class="track-artist">Taylor Swift</span></div><span class="track-badge pop">Pop</span></div>
 
-  <div class="music-item"><span class="track-num">19</span><span class="play-icon">▶</span><div><span class="track-name">LIMBO</span><span class="track-artist">keshi</span></div><span class="track-badge pop">R&B</span></div>
+  <div class="music-item" data-id="1SKPmfSYaPsETbRHaiA18G"><span class="track-num">17</span><span class="play-icon">♪</span><div><span class="track-name">Somewhere Only We Know</span><span class="track-artist">Keane</span></div><span class="track-badge alt">Alt Rock</span></div>
 
-  <div class="music-item"><span class="track-num">20</span><span class="play-icon">▶</span><div><span class="track-name">Hero (feat. Christina Perri)</span><span class="track-artist">Cash Cash</span></div><span class="track-badge pop">Pop</span></div>
+  <div class="music-item" data-id="0NyrI1tMvqcK3vU5z9DMdI"><span class="track-num">18</span><span class="play-icon">♪</span><div><span class="track-name">She Neva Knows</span><span class="track-artist">JustaTee</span></div><span class="track-badge vn">V-Pop</span></div>
+
+  <div class="music-item" data-id="2bdVgAQgosGUJoViVDNeOV"><span class="track-num">19</span><span class="play-icon">♪</span><div><span class="track-name">LIMBO</span><span class="track-artist">keshi</span></div><span class="track-badge pop">R&B</span></div>
+
+  <div class="music-item" data-id="5g1BARk25uUJtEPSUwcjnU"><span class="track-num">20</span><span class="play-icon">♪</span><div><span class="track-name">Hero (feat. Christina Perri)</span><span class="track-artist">Cash Cash</span></div><span class="track-badge pop">Pop</span></div>
 
 </div>
 <a class="spotify-btn" href="https://open.spotify.com/playlist/1g63cK4fRMp9APHSwv5AfL" target="_blank">
@@ -251,9 +291,9 @@ footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-
     <div><div class="c-label">Email</div><div class="c-value">tranvandoan@email.com</div></div>
   </a>
 
-  <a class="contact-card" href="https://facebook.com/tvd1237" target="_blank">
+  <a class="contact-card" href="https://facebook.com/tdoanf" target="_blank">
     <span class="contact-icon">📘</span>
-    <div><div class="c-label">Facebook</div><div class="c-value">Tran Doan</div></div>
+    <div><div class="c-label">Facebook</div><div class="c-value">facebook.com/tdoanf</div></div>
   </a>
 
   <a class="contact-card" href="https://open.spotify.com/user/31zctyny2dugq2i3tcpkl3iawy5y" target="_blank">
@@ -261,9 +301,9 @@ footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-
     <div><div class="c-label">Spotify</div><div class="c-value">tdoanf · 346 bài yêu thích</div></div>
   </a>
 
-  <a class="contact-card" href="https://instagram.com/tdoanf" target="_blank">
+  <a class="contact-card" href="#" target="_blank">
     <span class="contact-icon">📸</span>
-    <div><div class="c-label">Instagram</div><div class="c-value">Tdoan</div></div>
+    <div><div class="c-label">Instagram</div><div class="c-value">@tdoanf</div></div>
   </a>
 
 </div>
@@ -282,6 +322,7 @@ footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-
 </footer>
 
 <script>
+  // Sakura petals
   const c = document.getElementById('petals');
   const e = ['🌸','🌺','✿','❀'];
   for (let i = 0; i < 20; i++) {
@@ -294,6 +335,25 @@ footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-
     p.style.fontSize = (11 + Math.random() * 13) + 'px';
     c.appendChild(p);
   }
+
+  // Music player: click track → load Spotify embed
+  const player = document.getElementById('spotifyPlayer');
+  const items  = document.querySelectorAll('.music-item[data-id]');
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      // Remove active from all
+      items.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const trackId = item.dataset.id;
+      // Swap iframe src — append autoplay=1 for immediate playback
+      player.src = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1`;
+
+      // Smooth scroll to player
+      document.getElementById('playerWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
 </script>
 
 </body>
