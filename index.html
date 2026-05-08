@@ -291,6 +291,8 @@
     </div>
   </div>
   <div class="chat-input-row">
+    <label for="chat-file" style="cursor:pointer; color:var(--muted); font-size:1.1rem; padding:4px 8px 4px 0; margin-bottom: 4px;">📎</label>
+    <input type="file" id="chat-file" accept="image/*" style="display:none;">
     <textarea id="chat-input" rows="1" placeholder="Nhắn tin... (Enter gửi)"></textarea>
     <button id="chat-send">➤</button>
   </div>
@@ -331,7 +333,24 @@
   const sendBtn = document.getElementById('chat-send');
   const msgs = document.getElementById('chat-messages');
 
-  // ĐỪNG QUÊN DÁN API KEY MỚI CỦA BẠN VÀO ĐÂY!
+  const fileInput = document.getElementById('chat-file');
+  let base64Image = null;
+  let mimeType = null;
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      base64Image = event.target.result.split(',')[1];
+      mimeType = file.type;
+      input.placeholder = "[Đã đính kèm ảnh] Nhập tin nhắn...";
+      input.focus();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ⚠️ DÁN LẠI API KEY CỦA BẠN VÀO ĐÂY TRƯỚC KHI CHẠY (GIỮ NGUYÊN HAI DẤU NHÁY ĐƠN)
   const GEMINI_API_KEY = 'AIzaSyBh-uewF-50_dBuTqlPt0UYyJzbO2n-VZU'; 
   
   let busy = false;
@@ -350,7 +369,14 @@
     const av = document.createElement('div'); av.className = 'msg-av';
     av.textContent = role==='user'?'👤':'🌸';
     const bub = document.createElement('div'); bub.className = 'msg-bubble';
-    bub.textContent = text;
+    
+    // ĐÃ THAY ĐỔI: Bot thì dùng innerHTML để hiện ảnh, User thì dùng textContent để an toàn
+    if (role === 'bot') {
+      bub.innerHTML = text;
+    } else {
+      bub.textContent = text;
+    }
+    
     wrap.appendChild(av); wrap.appendChild(bub);
     msgs.appendChild(wrap); scrollDown();
     return bub;
@@ -369,22 +395,35 @@
 
   async function send() {
     const txt = input.value.trim();
-    if (!txt || busy) return;
+    if (!txt && !base64Image || busy) return;
     busy = true; sendBtn.disabled = true;
     input.value = ''; input.style.height = 'auto';
 
-    addMsg('user', txt);
+    addMsg('user', base64Image ? `[Đã gửi 1 ảnh] ${txt}` : txt);
     showTyping();
 
-    const systemPrompt = "Bạn là trợ lý AI thân thiện trên trang bio của Trần Văn Đoàn (tdoanf) — một bạn trẻ đam mê du học Nhật Bản và âm nhạc. Hãy trả lời ngắn gọn, thân thiện bằng tiếng Việt. Câu hỏi của người dùng là: ";
+    // ĐÃ THAY ĐỔI: Tẩy não AI bằng System Prompt để nó biết gửi link hình ảnh
+    const systemPrompt = `Bạn là trợ lý AI thân thiện trên trang bio của Trần Văn Đoàn (tdoanf) — một bạn trẻ đam mê du học Nhật Bản và âm nhạc. Hãy trả lời ngắn gọn, thân thiện bằng tiếng Việt. 
+    QUAN TRỌNG: Nếu người dùng yêu cầu vẽ ảnh, gửi ảnh hoặc xem ảnh (ví dụ: núi Phú Sĩ, anime, chó mèo...), bạn BẮT BUỘC phải trả lời bằng một câu dẫn, sau đó chèn thêm thẻ HTML hình ảnh theo đúng cú pháp này: <br><img src="https://image.pollinations.ai/prompt/MÔ TẢ BẰNG TIẾNG ANH CHI TIẾT TỪ 3 ĐẾN 5 TỪ?width=300&height=300&nologo=true" style="width:100%; border-radius:8px; margin-top:8px;">.
+    Câu hỏi của người dùng là: `;
 
     try {
+      let apiParts = [{ text: systemPrompt + txt }];
+      if (base64Image) {
+        apiParts.push({
+          inlineData: {
+            mimeType: mimeType,
+            data: base64Image
+          }
+        });
+      }
+
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{
-            parts: [{ text: systemPrompt + txt }]
+            parts: apiParts
           }]
         })
       });
@@ -404,6 +443,12 @@
       }
 
       addMsg('bot', reply);
+
+      base64Image = null;
+      mimeType = null;
+      fileInput.value = '';
+      input.placeholder = "Nhắn tin... (Enter gửi)";
+
     } catch(err) {
       removeTyping();
       addMsg('bot','Lỗi Code/Mạng: ' + err.message);
