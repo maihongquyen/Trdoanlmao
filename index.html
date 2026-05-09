@@ -350,11 +350,10 @@
     reader.readAsDataURL(file);
   });
 
-  // ⚠️ DÁN LẠI API KEY CỦA BẠN VÀO ĐÂY TRƯỚC KHI CHẠY (GIỮ NGUYÊN HAI DẤU NHÁY ĐƠN)
-  // Cắt đôi API Key ra để đánh lừa bot của GitHub
-  const part1 = 'AIzaSyAKJDNAHZ-'; // Dán nửa đầu của Key mới vào đây
-  const part2 = '8Uy6Ovhe4NMVUBYeFaYlzLAc';    // Dán nửa sau của Key mới vào đây
-  const GEMINI_API_KEY = part1 + part2; // Ghép lại khi chạy
+  // ⚠️ NHỚ SỬA LẠI THÀNH API KEY MỚI CỦA BẠN (Đừng để trống nhé!)
+  const part1 = 'NỬA_ĐẦU_CỦA_KEY_'; 
+  const part2 = 'NỬA_SAU_CỦA_KEY';
+  const GEMINI_API_KEY = part1 + part2;
   
   let busy = false;
 
@@ -373,7 +372,6 @@
     av.textContent = role==='user'?'👤':'🌸';
     const bub = document.createElement('div'); bub.className = 'msg-bubble';
     
-    // ĐÃ THAY ĐỔI: Bot thì dùng innerHTML để hiện ảnh, User thì dùng textContent để an toàn
     if (role === 'bot') {
       bub.innerHTML = text;
     } else {
@@ -405,7 +403,6 @@
     addMsg('user', base64Image ? `[Đã gửi 1 ảnh] ${txt}` : txt);
     showTyping();
 
-    // ĐÃ THAY ĐỔI: Tẩy não AI bằng System Prompt để nó biết gửi link hình ảnh
     const systemPrompt = `Bạn là trợ lý AI thân thiện trên trang bio của Trần Văn Đoàn (tdoanf) — một bạn trẻ đam mê du học Nhật Bản và âm nhạc. Hãy trả lời ngắn gọn, thân thiện bằng tiếng Việt. 
     QUAN TRỌNG: Nếu người dùng yêu cầu vẽ ảnh, gửi ảnh hoặc xem ảnh (ví dụ: núi Phú Sĩ, anime, chó mèo...), bạn BẮT BUỘC phải trả lời bằng một câu dẫn, sau đó chèn thêm thẻ HTML hình ảnh theo đúng cú pháp này: <br><img src="https://image.pollinations.ai/prompt/MÔ TẢ BẰNG TIẾNG ANH CHI TIẾT TỪ 3 ĐẾN 5 TỪ?width=300&height=300&nologo=true" style="width:100%; border-radius:8px; margin-top:8px;">.
     Câu hỏi của người dùng là: `;
@@ -463,6 +460,21 @@
   sendBtn.addEventListener('click', send);
   input.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} });
   input.addEventListener('input', function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,90)+'px'; });
+</script>
+
+<!-- Script đăng ký Service Worker để web chạy Offline -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker đăng ký thành công!');
+        })
+        .catch(err => {
+          console.log('ServiceWorker đăng ký thất bại: ', err);
+        });
+    });
+  }
 </script>
 
 </body>
