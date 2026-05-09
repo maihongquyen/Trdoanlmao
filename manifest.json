@@ -1,0 +1,21 @@
+{
+  "name": "Trần Văn Đoàn — Bio",
+  "short_name": "tdoanf",
+  "description": "Personal Bio & Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0eb",
+  "theme_color": "#c0392b",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192/c0392b/ffffff?text=TD",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512/c0392b/ffffff?text=TD",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
