@@ -1,46 +1,489 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trdoan | Personal Profile</title>
-    
-    <!-- Tối ưu SEO và chia sẻ link (Open Graph) -->
-    <meta name="description" content="Hồ sơ cá nhân của Trdoan - Tối giản và Chuyên nghiệp.">
-    <meta property="og:title" content="Trdoan | Personal Profile">
-    <meta property="og:description" content="Hồ sơ cá nhân của Trdoan - Tối giản và Chuyên nghiệp.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630">
-    <meta property="og:type" content="website">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trần Văn Đoàn — Bio</title>
 
-    <!-- Liên kết PWA và CSS -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c0392b">
+
+  <meta property="og:title" content="Trần Văn Đoàn — Bio">
+  <meta property="og:description" content="Một người trẻ đang theo đuổi ước mơ du học Nhật Bản — yêu âm nhạc, yêu những hành trình mới.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/c0392b/ffffff?text=Trần+Văn+Đoàn">
+  <meta property="og:type" content="website">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1018;
+      --paper: #f5f0eb;
+      --red: #c0392b;
+      --gold: #c9a84c;
+      --muted: #7a6e6a;
+      --line: rgba(26,16,24,0.12);
+      --card: rgba(255,255,255,0.55);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: 'DM Mono', monospace; min-height: 100vh; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.6; }
+    .hashira { position: fixed; left: 48px; top: 0; bottom: 0; width: 3px; background: var(--red); z-index: 2; opacity: 0.7; }
+    .petals-container { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .petal { position: absolute; top: -40px; opacity: 0; animation: fall linear infinite; }
+    @keyframes fall { 0% { opacity: 0; transform: translateY(0) rotate(0deg); } 10% { opacity: 0.55; } 90% { opacity: 0.35; } 100% { opacity: 0; transform: translateY(110vh) rotate(540deg); } }
+    main { position: relative; z-index: 3; max-width: 780px; margin: 0 auto; padding: 80px 40px 100px 100px; }
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 72px; animation: fadeUp 1s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; display: block; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.1; font-weight: 700; margin-bottom: 6px; }
+    .jp-name { font-family: 'Noto Serif JP', serif; font-size: 0.95rem; color: var(--muted); letter-spacing: 0.18em; margin-bottom: 26px; display: block; }
+    .tagline { font-size: 0.8rem; line-height: 1.95; color: var(--muted); max-width: 400px; border-left: 2px solid var(--gold); padding-left: 16px; }
+    .avatar-wrap { position: relative; width: 130px; height: 130px; flex-shrink: 0; }
+    .avatar-wrap::before { content: ''; position: absolute; inset: -8px; border: 1.5px solid var(--red); border-radius: 2px; transform: rotate(4deg); }
+    .avatar { width: 130px; height: 130px; background: linear-gradient(145deg, #e8d5c4, #d4b8a8); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; position: relative; z-index: 1; }
+    .avatar::after { content: '🌸'; position: absolute; bottom: 6px; right: 8px; font-size: 0.9rem; opacity: 0.7; }
+    .divider { display: flex; align-items: center; gap: 16px; margin: 52px 0 36px; }
+    .divider-line { flex: 1; height: 1px; background: var(--line); }
+    .divider-kanji { font-family: 'Noto Serif JP', serif; font-size: 1rem; color: var(--red); letter-spacing: 0.12em; }
+    section { margin-bottom: 58px; animation: fadeUp 1s ease both; }
+    section:nth-of-type(2) { animation-delay: 0.1s; }
+    section:nth-of-type(3) { animation-delay: 0.2s; }
+    section:nth-of-type(4) { animation-delay: 0.3s; }
+    section:nth-of-type(5) { animation-delay: 0.4s; }
+    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 400; font-style: italic; }
+    .section-jp { font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .about-card { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 15px 18px; position: relative; overflow: hidden; }
+    .about-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+    .card-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .card-value { font-size: 0.81rem; line-height: 1.55; }
+    .japan-box { background: linear-gradient(135deg, rgba(192,57,43,0.05), rgba(201,168,76,0.06)); border: 1px solid rgba(192,57,43,0.2); border-radius: 6px; padding: 24px 28px; position: relative; }
+    .japan-box::after { content: '日本へ'; position: absolute; top: 14px; right: 18px; font-family: 'Noto Serif JP', serif; font-size: 0.7rem; color: var(--red); opacity: 0.4; }
+    .japan-box p { font-size: 0.81rem; line-height: 2; }
+    .highlight { color: var(--red); font-weight: 500; }
+    .timeline { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
+    .timeline-item { display: flex; gap: 13px; align-items: flex-start; font-size: 0.78rem; }
+    .tl-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); margin-top: 5px; flex-shrink: 0; }
+    .tl-text { line-height: 1.6; }
+    .tl-text strong { color: var(--red); }
+    .stamp { display: inline-block; border: 2px solid var(--red); color: var(--red); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; transform: rotate(-2deg); opacity: 0.8; }
+    .music-list { display: flex; flex-direction: column; gap: 1px; }
+    .music-item { display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center; padding: 10px 13px; border-radius: 4px; border: 1px solid transparent; transition: all 0.22s ease; cursor: pointer; position: relative; }
+    .music-item:hover { background: rgba(255,255,255,0.75); border-color: var(--line); transform: translateX(4px); }
+    .music-item.active { background: rgba(192,57,43,0.06); border-color: rgba(192,57,43,0.2); transform: translateX(4px); }
+    .music-item:hover .track-num, .music-item.active .track-num { opacity: 0; }
+    .music-item:hover .play-icon { opacity: 1; }
+    .music-item.active .play-icon { opacity: 1; color: var(--red); animation: pulse 1s ease infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .track-num { font-size: 0.66rem; color: var(--muted); text-align: right; transition: opacity 0.18s; }
+    .play-icon { position: absolute; left: 13px; font-size: 0.68rem; opacity: 0; transition: opacity 0.18s; color: var(--red); }
+    .track-name { font-size: 0.82rem; display: block; margin-bottom: 2px; }
+    .track-artist { font-size: 0.68rem; color: var(--muted); }
+    .track-badge { font-size: 0.6rem; padding: 2px 7px; border-radius: 20px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+    .track-badge.pop  { border-color: rgba(100,100,200,0.25); color: #5557a8; }
+    .track-badge.indie{ border-color: rgba(201,168,76,0.4); color: #9a7a2c; }
+    .track-badge.vn   { border-color: rgba(192,57,43,0.3); color: var(--red); }
+    .track-badge.alt  { border-color: rgba(80,150,100,0.35); color: #3a7a52; }
+    .track-badge.soul { border-color: rgba(180,80,180,0.3); color: #9a3e9a; }
+    .player-wrap { margin-bottom: 6px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(29,185,84,0.2); box-shadow: 0 4px 24px rgba(0,0,0,0.08); transition: all 0.4s ease; background: #000; }
+    .player-wrap iframe { display: block; width: 100%; border: none; }
+    .player-hint { font-size: 0.68rem; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+    .player-hint::before { content: '♪'; color: #1db954; }
+    .spotify-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 0.73rem; color: #1db954; text-decoration: none; border: 1px solid rgba(29,185,84,0.3); padding: 7px 16px; border-radius: 20px; transition: all 0.2s; }
+    .spotify-btn:hover { background: rgba(29,185,84,0.08); border-color: rgba(29,185,84,0.6); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-card { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 18px; text-decoration: none; color: var(--ink); transition: all 0.22s ease; }
+    .contact-card:hover { background: rgba(255,255,255,0.85); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .contact-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .c-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .c-value { font-size: 0.78rem; }
+    footer { position: relative; z-index: 3; text-align: center; padding: 34px 40px; border-top: 1px solid var(--line); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+    footer .jp-footer { font-family: 'Noto Serif JP', serif; display: block; margin-top: 6px; font-size: 0.7rem; color: var(--red); opacity: 0.5; }
+    @media (max-width: 600px) {
+      main { padding: 60px 20px 80px 68px; }
+      .hero { grid-template-columns: 1fr; }
+      .avatar-wrap { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── AI CHAT ── */
+    #chat-toggle {
+      position: fixed; bottom: 28px; right: 28px; z-index: 1000;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), #e74c3c);
+      border: none; cursor: pointer; font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(192,57,43,0.45);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #chat-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(192,57,43,0.55); }
+    #chat-bubble {
+      position: fixed; bottom: 96px; right: 28px; z-index: 999;
+      width: 340px; max-width: calc(100vw - 40px);
+      background: #1a1018; border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+      border: 1px solid rgba(192,57,43,0.3);
+      display: none; flex-direction: column; overflow: hidden;
+      animation: popUp 0.25s ease;
+    }
+    @keyframes popUp { from { opacity:0; transform: translateY(12px) scale(0.97); } to { opacity:1; transform: translateY(0) scale(1); } }
+    #chat-bubble.open { display: flex; }
+    .chat-header {
+      background: linear-gradient(135deg, #2d1a1a, #3a1a1a);
+      padding: 12px 16px; display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid rgba(192,57,43,0.2);
+    }
+    .chat-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,var(--red),#e74c3c); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+    .chat-header-info { flex:1; }
+    .chat-header-name { color: #f5f0eb; font-size: 0.82rem; font-weight: 600; }
+    .chat-header-status { color: #2ecc71; font-size: 0.65rem; display:flex; align-items:center; gap:4px; }
+    .chat-header-status::before { content:''; width:6px; height:6px; border-radius:50%; background:#2ecc71; display:inline-block; }
+    #chat-close { background:none; border:none; color:#7a6e6a; cursor:pointer; font-size:1.1rem; padding:4px; }
+    #chat-close:hover { color:#f5f0eb; }
+    #chat-messages {
+      flex:1; overflow-y:auto; padding:14px 14px 8px;
+      display:flex; flex-direction:column; gap:10px;
+      max-height: 320px; min-height: 200px;
+    }
+    #chat-messages::-webkit-scrollbar { width:3px; }
+    #chat-messages::-webkit-scrollbar-thumb { background:#3a2a2a; border-radius:3px; }
+    .msg { display:flex; gap:8px; align-items:flex-end; }
+    .msg.user { flex-direction:row-reverse; }
+    .msg-bubble {
+      max-width: 78%; padding: 9px 13px; border-radius: 14px;
+      font-size: 0.76rem; line-height: 1.6; word-break: break-word; white-space: pre-wrap;
+    }
+    .msg.bot .msg-bubble { background:#2d1a1a; color:#f5f0eb; border:1px solid rgba(192,57,43,0.2); border-bottom-left-radius:4px; }
+    .msg.user .msg-bubble { background:linear-gradient(135deg,var(--red),#e74c3c); color:#fff; border-bottom-right-radius:4px; }
+    .msg-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
+    .msg.bot .msg-av { background:linear-gradient(135deg,var(--red),#e74c3c); }
+    .msg.user .msg-av { background:#3a2a2a; }
+    .typing-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--red); animation:blink 1.2s infinite; margin:0 2px; }
+    .typing-dot:nth-child(2){animation-delay:.2s}
+    .typing-dot:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+    .chat-input-row {
+      display:flex; gap:8px; align-items:flex-end;
+      padding:10px 12px; border-top:1px solid rgba(192,57,43,0.15);
+      background:#1a1018;
+    }
+    #chat-input {
+      flex:1; background:#2d1a1a; border:1px solid rgba(192,57,43,0.2);
+      border-radius:20px; padding:8px 14px; color:#f5f0eb;
+      font-family:'DM Mono',monospace; font-size:0.74rem;
+      outline:none; resize:none; max-height:90px; line-height:1.5;
+    }
+    #chat-input::placeholder { color:#5a4a4a; }
+    #chat-input:focus { border-color:rgba(192,57,43,0.5); }
+    #chat-send {
+      width:36px; height:36px; border-radius:50%; flex-shrink:0;
+      background:linear-gradient(135deg,var(--red),#e74c3c);
+      border:none; cursor:pointer; color:#fff; font-size:1rem;
+      display:flex; align-items:center; justify-content:center;
+      transition:opacity 0.2s;
+    }
+    #chat-send:disabled { opacity:0.4; cursor:default; }
+    .chat-footer-note { text-align:center; font-size:0.6rem; color:#5a4a4a; padding:0 12px 8px; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="profile-header">
-            <!-- Thay bằng ảnh avatar của bạn -->
-            <img src="https://via.placeholder.com/150" alt="Trdoan Avatar" class="avatar">
-            <h1>Trdoan</h1>
-            <p class="tagline">Developer & Designer</p>
-        </header>
 
-        <section class="links-section">
-            <a href="#" class="link-btn">GitHub</a>
-            <a href="#" class="link-btn">LinkedIn</a>
-            <a href="#" class="link-btn">Contact Me</a>
-        </section>
+<div class="hashira"></div>
+<div class="petals-container" id="petals"></div>
+
+<main>
+  <div class="hero">
+    <div class="hero-text">
+      <span class="label">✦ Personal Bio · 2025 ✦</span>
+      <h1>Trần<br/>Văn Đoàn</h1>
+      <span class="jp-name">チャン・ヴァン・ドアン ・ tdoanf</span>
+      <p class="tagline">Một người trẻ đang theo đuổi ước mơ du học Nhật Bản — yêu âm nhạc, yêu những hành trình mới, và tin rằng <strong>mỗi ngày đều là một trang mới</strong> để viết tiếp.</p>
     </div>
+    <div class="avatar-wrap"><div class="avatar">🌸</div></div>
+  </div>
 
-    <!-- Script gọi Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => console.log('Service Worker đăng ký thành công:', registration.scope))
-                    .catch(err => console.log('Service Worker đăng ký thất bại:', err));
-            });
-        }
-    </script>
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">自己紹介</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Về bản thân</h2><span class="section-jp">About me</span></div>
+    <div class="about-grid">
+      <div class="about-card"><div class="card-label">Đam mê</div><div class="card-value">Âm nhạc · Văn hóa Nhật · Đọc sách · Nhiếp ảnh</div></div>
+      <div class="about-card"><div class="card-label">Đang học</div><div class="card-value">Tiếng Nhật N3 → N2 · Chuẩn bị hồ sơ du học</div></div>
+      <div class="about-card"><div class="card-label">Tính cách</div><div class="card-value">Hướng nội · Mơ mộng · Chăm chỉ · Thích khám phá</div></div>
+      <div class="about-card"><div class="card-label">Motto</div><div class="card-value">「七転び八起き」<br/>Thất bại 7 lần, đứng dậy 8 lần.</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">夢・ゆめ</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Hành trình Nhật Bản</h2><span class="section-jp">Japan Dream</span><span class="stamp">Incoming ✈</span></div>
+    <div class="japan-box">
+      <p>Từ lần đầu nghe một bài nhạc Nhật, mình đã bị cuốn hút vào thứ văn hóa ấy — vừa <span class="highlight">tinh tế</span>, vừa <span class="highlight">đầy chiều sâu</span>. Du học Nhật Bản không chỉ là việc học, đó là cả một cuộc phiêu lưu mình luôn mơ tới.</p>
+      <div class="timeline">
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Bắt đầu học tiếng Nhật</strong> — Hiragana, Katakana, Kanji từng bước</div></div>
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Chuẩn bị hồ sơ du học</strong> — JLPT, portfolio, phỏng vấn học bổng</div></div>
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Sắp lên đường!</strong> — Háo hức, hồi hộp và sẵn sàng 🇯🇵</div></div>
+        <div class="timeline-item"><div class="tl-dot"></div><div class="tl-text"><strong>Ước mơ tương lai</strong> — Làm việc, trải nghiệm và trưởng thành tại Nhật</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">音楽</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Nhạc yêu thích</h2><span class="section-jp">346 bài · Spotify</span></div>
+    <div class="player-wrap" id="playerWrap">
+      <iframe id="spotifyPlayer" src="https://open.spotify.com/embed/track/6lOWoTqVnAWXchddtTH31W?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <p class="player-hint">Bấm vào bài nhạc bên dưới để phát · Cần đăng nhập Spotify để nghe đầy đủ</p>
+    <div class="music-list" id="musicList">
+      <div class="music-item active" data-id="6lOWoTqVnAWXchddtTH31W"><span class="track-num">01</span><span class="play-icon">♪</span><div><span class="track-name">Leave a Light On</span><span class="track-artist">Tom Walker</span></div><span class="track-badge pop">Pop</span></div>
+      <div class="music-item" data-id="74OuU0iGq2Hbsgnetf5xhy"><span class="track-num">02</span><span class="play-icon">♪</span><div><span class="track-name">A Thousand Years</span><span class="track-artist">Jada Facer · Kyson Facer</span></div><span class="track-badge soul">Ballad</span></div>
+      <div class="music-item" data-id="3CeKc83EsgRPItgvlDHo5B"><span class="track-num">03</span><span class="play-icon">♪</span><div><span class="track-name">Head In The Clouds</span><span class="track-artist">Hayd</span></div><span class="track-badge indie">Indie</span></div>
+      <div class="music-item" data-id="6XDBohkvajOwoqr8jHPjzQ"><span class="track-num">04</span><span class="play-icon">♪</span><div><span class="track-name">Those Eyes (Sped Up)</span><span class="track-artist">New West</span></div><span class="track-badge pop">Pop</span></div>
+      <div class="music-item" data-id="1Fid2jjqsHViMX6xNH70hE"><span class="track-num">05</span><span class="play-icon">♪</span><div><span class="track-name">Atlantis</span><span class="track-artist">Seafret</span></div><span class="track-badge indie">Indie</span></div>
+      <div class="music-item" data-id="0DuWDLjriRPjDRoPgaCslY"><span class="track-num">06</span><span class="play-icon">♪</span><div><span class="track-name">Love In The Dark</span><span class="track-artist">Adele</span></div><span class="track-badge soul">Soul</span></div>
+      <div class="music-item" data-id="1K2RnVhm3eauKnA8PAcPu1"><span class="track-num">07</span><span class="play-icon">♪</span><div><span class="track-name">Heat Waves (Slowed)</span><span class="track-artist">Glass Animals</span></div><span class="track-badge alt">Alt</span></div>
+      <div class="music-item" data-id="5XeFesFbtLpXzIVDNQP22n"><span class="track-num">08</span><span class="play-icon">♪</span><div><span class="track-name">I Wanna Be Yours</span><span class="track-artist">Arctic Monkeys</span></div><span class="track-badge alt">Alt Rock</span></div>
+      <div class="music-item" data-id="6fhG2KJgwO7CrNflRaRmvp"><span class="track-num">09</span><span class="play-icon">♪</span><div><span class="track-name">Dandelions (Slowed + Reverb)</span><span class="track-artist">Ruth B.</span></div><span class="track-badge indie">Indie</span></div>
+      <div class="music-item" data-id="1v6svH1Fyx9C1nIt1mA2DT"><span class="track-num">10</span><span class="play-icon">♪</span><div><span class="track-name">All I Want</span><span class="track-artist">Olivia Rodrigo</span></div><span class="track-badge pop">Pop</span></div>
+      <div class="music-item" data-id="1mea3bSkSGXuIRvnydlB5b"><span class="track-num">11</span><span class="play-icon">♪</span><div><span class="track-name">Viva La Vida</span><span class="track-artist">Coldplay</span></div><span class="track-badge alt">Rock</span></div>
+      <div class="music-item" data-id="42qNWdLKCI41S4uzfamhFM"><span class="track-num">12</span><span class="play-icon">♪</span><div><span class="track-name">Duvet</span><span class="track-artist">bôa</span></div><span class="track-badge alt">Dream Pop</span></div>
+      <div class="music-item" data-id="4xF4ZBGPZKxECeDFrqSAG4"><span class="track-num">13</span><span class="play-icon">♪</span><div><span class="track-name">snowfall</span><span class="track-artist">Øneheart · reidenshi</span></div><span class="track-badge indie">Lo-fi</span></div>
+      <div class="music-item" data-id="7eJMfftS33KTjuF7lTsMCx"><span class="track-num">14</span><span class="play-icon">♪</span><div><span class="track-name">death bed (coffee for your head)</span><span class="track-artist">Powfu · beabadoobee</span></div><span class="track-badge indie">Indie</span></div>
+      <div class="music-item" data-id="0QzuaeCEEOV40Pn7IvKEny"><span class="track-num">15</span><span class="play-icon">♪</span><div><span class="track-name">double take</span><span class="track-artist">Dhruv</span></div><span class="track-badge pop">R&B</span></div>
+      <div class="music-item" data-id="3sqrvkNC6IPTIXvvbx9Arw"><span class="track-num">16</span><span class="play-icon">♪</span><div><span class="track-name">Enchanted</span><span class="track-artist">Taylor Swift</span></div><span class="track-badge pop">Pop</span></div>
+      <div class="music-item" data-id="1SKPmfSYaPsETbRHaiA18G"><span class="track-num">17</span><span class="play-icon">♪</span><div><span class="track-name">Somewhere Only We Know</span><span class="track-artist">Keane</span></div><span class="track-badge alt">Alt Rock</span></div>
+      <div class="music-item" data-id="0NyrI1tMvqcK3vU5z9DMdI"><span class="track-num">18</span><span class="play-icon">♪</span><div><span class="track-name">She Neva Knows</span><span class="track-artist">JustaTee</span></div><span class="track-badge vn">V-Pop</span></div>
+      <div class="music-item" data-id="2bdVgAQgosGUJoViVDNeOV"><span class="track-num">19</span><span class="play-icon">♪</span><div><span class="track-name">LIMBO</span><span class="track-artist">keshi</span></div><span class="track-badge pop">R&B</span></div>
+      <div class="music-item" data-id="5g1BARk25uUJtEPSUwcjnU"><span class="track-num">20</span><span class="play-icon">♪</span><div><span class="track-name">Hero (feat. Christina Perri)</span><span class="track-artist">Cash Cash</span></div><span class="track-badge pop">Pop</span></div>
+    </div>
+    <a class="spotify-btn" href="https://open.spotify.com/playlist/1g63cK4fRMp9APHSwv5AfL" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Nghe full playlist · 346 bài trên Spotify
+    </a>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-kanji">連絡先</span><div class="divider-line"></div></div>
+  <section>
+    <div class="section-header"><h2>Liên lạc</h2><span class="section-jp">Get in touch</span></div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:tranvandoan@email.com"><span class="contact-icon">✉️</span><div><div class="c-label">Email</div><div class="c-value">tranvandoan@email.com</div></div></a>
+      <a class="contact-card" href="https://facebook.com/tvd1237" target="_blank"><span class="contact-icon">📘</span><div><div class="c-label">Facebook</div><div class="c-value">tdoanf</div></div></a>
+      <a class="contact-card" href="https://open.spotify.com/user/31zctyny2dugq2i3tcpkl3iawy5y" target="_blank"><span class="contact-icon">🎵</span><div><div class="c-label">Spotify</div><div class="c-value">tdoanf · 346 bài yêu thích</div></div></a>
+      <a class="contact-card" href="https://instagram.com/tdoanf" target="_blank"><span class="contact-icon">📸</span><div><div class="c-label">Instagram</div><div class="c-value">tdoanf</div></div></a>
+    </div>
+    <p style="font-size:0.72rem; color:var(--muted); margin-top:14px; opacity:0.7;">💡 Cập nhật email / Instagram / số điện thoại theo thông tin thực của bạn nhé!</p>
+  </section>
+</main>
+
+<footer>
+  Trần Văn Đoàn · Sắp lên đường đến Nhật Bản 🇯🇵
+  <span class="jp-footer">日本への旅はもうすぐ ✈️ 🌸</span>
+</footer>
+
+<button id="chat-toggle" title="Chat với AI 🌸">🌸</button>
+
+<div id="chat-bubble">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">Trợ lý AI · tdoanf</div>
+      <div class="chat-header-status">Đang hoạt động</div>
+    </div>
+    <button id="chat-close">✕</button>
+  </div>
+  <div id="chat-messages">
+    <div class="msg bot">
+      <div class="msg-av">🌸</div>
+      <div class="msg-bubble">Xin chào! Mình là trợ lý AI trên trang của Đoàn. Bạn muốn hỏi gì nào? 😊</div>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <label for="chat-file" style="cursor:pointer; color:var(--muted); font-size:1.1rem; padding:4px 8px 4px 0; margin-bottom: 4px;">📎</label>
+    <input type="file" id="chat-file" accept="image/*" style="display:none;">
+    <textarea id="chat-input" rows="1" placeholder="Nhắn tin... (Enter gửi)"></textarea>
+    <button id="chat-send">➤</button>
+  </div>
+  <div class="chat-footer-note">Powered by mquyen267 ✦</div>
+</div>
+
+<script>
+  // Sakura petals
+  const c = document.getElementById('petals');
+  const e = ['🌸','🌺','✿','❀'];
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = e[Math.floor(Math.random()*e.length)];
+    p.style.left = Math.random()*100+'vw';
+    p.style.animationDuration = (8+Math.random()*10)+'s';
+    p.style.animationDelay = (Math.random()*14)+'s';
+    p.style.fontSize = (11+Math.random()*13)+'px';
+    c.appendChild(p);
+  }
+
+  // Music player
+  const player = document.getElementById('spotifyPlayer');
+  document.querySelectorAll('.music-item[data-id]').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.music-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      player.src = `https://open.spotify.com/embed/track/$${item.dataset.id}?utm_source=generator&theme=0&autoplay=1`;
+      document.getElementById('playerWrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+  });
+
+  // AI Chat Variables
+  const toggle = document.getElementById('chat-toggle');
+  const bubble = document.getElementById('chat-bubble');
+  const closeBtn = document.getElementById('chat-close');
+  const input = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('chat-send');
+  const msgs = document.getElementById('chat-messages');
+
+  const fileInput = document.getElementById('chat-file');
+  let base64Image = null;
+  let mimeType = null;
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      base64Image = event.target.result.split(',')[1];
+      mimeType = file.type;
+      input.placeholder = "[Đã đính kèm ảnh] Nhập tin nhắn...";
+      input.focus();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ⚠️ NHỚ SỬA LẠI THÀNH API KEY MỚI CỦA BẠN (Đừng để trống nhé!)
+  const part1 = 'NỬA_ĐẦU_CỦA_KEY_'; 
+  const part2 = 'NỬA_SAU_CỦA_KEY';
+  const GEMINI_API_KEY = part1 + part2;
+  
+  let busy = false;
+
+  toggle.addEventListener('click', () => {
+    bubble.classList.toggle('open');
+    if (bubble.classList.contains('open')) input.focus();
+  });
+  closeBtn.addEventListener('click', () => bubble.classList.remove('open'));
+
+  function scrollDown() { msgs.scrollTop = msgs.scrollHeight; }
+
+  function addMsg(role, text) {
+    const wrap = document.createElement('div');
+    wrap.className = 'msg ' + (role==='user'?'user':'bot');
+    const av = document.createElement('div'); av.className = 'msg-av';
+    av.textContent = role==='user'?'👤':'🌸';
+    const bub = document.createElement('div'); bub.className = 'msg-bubble';
+    
+    if (role === 'bot') {
+      bub.innerHTML = text;
+    } else {
+      bub.textContent = text;
+    }
+    
+    wrap.appendChild(av); wrap.appendChild(bub);
+    msgs.appendChild(wrap); scrollDown();
+    return bub;
+  }
+
+  function showTyping() {
+    const wrap = document.createElement('div'); wrap.className = 'msg bot'; wrap.id = 'typing';
+    const av = document.createElement('div'); av.className = 'msg-av'; av.textContent = '🌸';
+    const bub = document.createElement('div'); bub.className = 'msg-bubble';
+    bub.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+    wrap.appendChild(av); wrap.appendChild(bub);
+    msgs.appendChild(wrap); scrollDown();
+  }
+
+  function removeTyping() { const t = document.getElementById('typing'); if(t) t.remove(); }
+
+  async function send() {
+    const txt = input.value.trim();
+    if (!txt && !base64Image || busy) return;
+    busy = true; sendBtn.disabled = true;
+    input.value = ''; input.style.height = 'auto';
+
+    addMsg('user', base64Image ? `[Đã gửi 1 ảnh] ${txt}` : txt);
+    showTyping();
+
+    const systemPrompt = `Bạn là trợ lý AI thân thiện trên trang bio của Trần Văn Đoàn (tdoanf) — một bạn trẻ đam mê du học Nhật Bản và âm nhạc. Hãy trả lời ngắn gọn, thân thiện bằng tiếng Việt. 
+    QUAN TRỌNG: Nếu người dùng yêu cầu vẽ ảnh, gửi ảnh hoặc xem ảnh (ví dụ: núi Phú Sĩ, anime, chó mèo...), bạn BẮT BUỘC phải trả lời bằng một câu dẫn, sau đó chèn thêm thẻ HTML hình ảnh theo đúng cú pháp này: <br><img src="https://image.pollinations.ai/prompt/MÔ TẢ BẰNG TIẾNG ANH CHI TIẾT TỪ 3 ĐẾN 5 TỪ?width=300&height=300&nologo=true" style="width:100%; border-radius:8px; margin-top:8px;">.
+    Câu hỏi của người dùng là: `;
+
+    try {
+      let apiParts = [{ text: systemPrompt + txt }];
+      if (base64Image) {
+        apiParts.push({
+          inlineData: {
+            mimeType: mimeType,
+            data: base64Image
+          }
+        });
+      }
+
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: apiParts
+          }]
+        })
+      });
+      
+      const data = await res.json();
+      removeTyping();
+
+      if (!res.ok) {
+         addMsg('bot', `Báo lỗi API (${res.status}): ` + (data.error?.message || 'Không rõ nguyên nhân'));
+         busy = false; sendBtn.disabled = false; input.focus();
+         return;
+      }
+      
+      let reply = 'Xin lỗi, mình không trả lời được lúc này 😅';
+      if (data.candidates && data.candidates.length > 0) {
+        reply = data.candidates[0].content.parts[0].text;
+      }
+
+      addMsg('bot', reply);
+
+      base64Image = null;
+      mimeType = null;
+      fileInput.value = '';
+      input.placeholder = "Nhắn tin... (Enter gửi)";
+
+    } catch(err) {
+      removeTyping();
+      addMsg('bot','Lỗi Code/Mạng: ' + err.message);
+    }
+
+    busy = false; sendBtn.disabled = false; input.focus();
+  }
+
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} });
+  input.addEventListener('input', function(){ this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,90)+'px'; });
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker đăng ký thành công!');
+        })
+        .catch(err => {
+          console.log('ServiceWorker đăng ký thất bại: ', err);
+        });
+    });
+  }
+</script>
+
 </body>
 </html>
